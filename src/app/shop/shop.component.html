@@ -1,0 +1,21 @@
+<div class="grid-container">
+    <div *ngFor="let product of products;index as indexOfelement;">
+
+        <div class="hover-table-layout">
+            <div class="listing-item">
+                <figure class="image">
+                    <img src="{{ product.picLink }}" alt="{{ product.name }}" height="400px">
+                    <figcaption>
+                    </figcaption>
+                </figure>
+                <div class="listing" style="text-align: center;">
+                    <h2>{{ product.name }}</h2>
+                    <h4 style="height: 100px;">{{ product.description }}</h4>
+                    <h3>₹ {{ product.cost }}</h3>
+                    <button class="btn btn-primary" (click)="addToCart(indexOfelement)">Add to cart</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

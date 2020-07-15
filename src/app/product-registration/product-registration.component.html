@@ -1,0 +1,32 @@
+<div class="testbox">
+    <form #f="ngForm">
+        <div class="banner">
+            <h1>Product Registration</h1>
+        </div> <br> <br>
+        <div class="colums">
+            <div class="item" style="text-align: center">
+                <label for="name" style="color: aliceblue;font-size:xx-large">Name</label> <br><br>
+                <input type="text" name="name" [(ngModel)]="product.name" placeholder="Name" style="height: 50px;">
+            </div>
+            <div class="item" style="text-align: center">
+                <label for="picLink" style="color: aliceblue;font-size:xx-large">Image Url</label> <br><br>
+                <input type="text" name="picLink" [(ngModel)]="product.picLink" placeholder="Image Url" style="height: 50px;">
+            </div>
+            <div class="item" style="text-align: center">
+                <label for="cost" style="color: aliceblue;font-size:xx-large">Price</label> <br><br>
+                <input type="number" name="cost" [(ngModel)]="product.cost" placeholder="Price" style="height: 50px;">
+            </div>
+            <div class="item" style="text-align: center">
+                <label for="discount" style="color: aliceblue;font-size:xx-large">Discount</label> <br><br>
+                <input type="number" name="discount" [(ngModel)]="product.discount" placeholder="Discount" style="height: 50px;">
+            </div>
+        </div><br>
+        <div style="text-align: center">
+            <label for="description" style="color: aliceblue;font-size:xx-large;">Product Description</label> <br><br>
+            <textarea type="text" name="description" [(ngModel)]="product.description" placeholder="Product Description" style="height: 200px;"></textarea>
+        </div>
+        <div style="text-align: center">
+            <button class="btn btn-primary" style="background-color: orange;" (click)="createProduct(f)">Save</button>
+        </div>
+    </form>
+</div>
