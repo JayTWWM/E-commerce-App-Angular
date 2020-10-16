@@ -2,6 +2,7 @@ import { UserApiService } from './../user-api.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { LocalStorageService } from 'angular-web-storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +14,7 @@ export class LogInComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private userApiService: UserApiService, private local: LocalStorageService) { }
+  constructor(private userApiService: UserApiService, private local: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +31,8 @@ export class LogInComponent implements OnInit {
         this.local.set("Phone",user.phone);
         console.log("User login successful ", user);
         console.log("User created " + this.local.get("FirstName"));
-        this.ngOnInit();
+        // this.ngOnInit();
+        this.router.navigate(['/']);
       });
     }
   }

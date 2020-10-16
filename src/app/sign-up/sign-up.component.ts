@@ -30,6 +30,7 @@ export class SignUpComponent implements OnInit {
         console.log("User created ", user);
         console.log("User created " + this.local.get("FirstName"));
         this.ngOnInit();
+        this.router.navigate(['/']);
       });
     }
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
@@ -13,13 +14,18 @@ export class UserComponent implements OnInit {
   email: string;
   phone: string;
 
-  constructor(private local: LocalStorageService) { }
+  constructor(private local: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.first_name = this.local.get("FirstName");
     this.last_name = this.local.get("LastName");
     this.email = this.local.get("Email");
     this.phone = this.local.get("Phone");
+  }
+
+  signOut(): void { 
+    this.local.clear();
+    this.router.navigate(['/']);
   }
 
 }

@@ -3,6 +3,7 @@ import { Product } from './../product';
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { checkout } from '../checkout';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -17,34 +18,41 @@ export class CheckoutComponent implements OnInit {
   email: string;
   checked: boolean = false;
 
-  constructor(private local: LocalStorageService,private productApiService: ProductApiService) { }
+  constructor(private local: LocalStorageService, private productApiService: ProductApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.count = this.local.get("count");
-    for (var i = 1; i <= this.count; i++) { 
+    for (var i = 1; i <= this.count; i++) {
       this.products.push(this.local.get((("product" + i.toString()))));
     }
-    for (var product of this.products) { 
-      this.temp = this.cost + (Number(product.cost)-Number(product.cost)*Number(product.discount)/100);
+    for (var product of this.products) {
+      this.temp = this.cost + (Number(product.cost) - Number(product.cost) * Number(product.discount) / 100);
       this.cost = this.temp;
     }
     this.email = this.local.get("Email");
-    console.log("Cost "+this.cost);
+    console.log("Cost " + this.cost);
     console.log("Number of Products " + this.count);
     console.log("Email is: " + this.local.get("Email"));
+
   }
 
-  checkoutProducts() { 
+  checkoutProducts() {
     if (this.count == 0) {
       console.log("No items to buy");
-    } else { 
+    } else {
       if (!this.checked) {
         this.checked = !this.checked;
         console.log("Proceeding");
-      this.productApiService.checkoutProducts(this.email, this.cost, this.count).subscribe((checkout: checkout) => {
-        console.log(checkout.cost);
-        this.ngOnInit();
-      });
+        this.productApiService.checkoutProducts(this.email, this.cost, this.count).subscribe((checkout: checkout) => {
+          console.log(checkout.cost);
+          this.count = this.local.get("count");
+          for (var i = 1; i <= this.count; i++) {
+            this.local.remove((("product" + i.toString())));
+          }
+          this.local.set("count", 0);
+          this.router.navigate(['/']);
+          // this.ngOnInit();
+        });
       }
     }
   }

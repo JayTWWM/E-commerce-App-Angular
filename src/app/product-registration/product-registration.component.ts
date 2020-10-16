@@ -14,6 +14,7 @@ export class ProductRegistrationComponent implements OnInit {
   constructor(private productApiService: ProductApiService) { }
 
   ngOnInit(): void {
+    this.product = { name: null, picLink: null, cost: null, description: null, discount: null };  
   }
 
   createProduct(form) {
