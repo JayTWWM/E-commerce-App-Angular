@@ -1,6 +1,6 @@
 # ECommerce
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+This project is a fully functional e-commerce app made in angular with PHP-MySQL backend
 
 ## Development server
 
